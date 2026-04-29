@@ -15,7 +15,11 @@ jobs:
           username: ${{ secrets.USERNAME }} # ubuntu user name as username to be added in secrets
           key: ${{ secrets.SSH_KEY }} # adding private  key  or pem to password
           script: |
-           git clone https://github.com/Puneetbansal5/github-actions-demo.git
-           cd ~/github-actions-demo
-           docker compose pull
-           docker compose up -d
+            set -e
+            if[ ! -d "~/github-actions-demo" ]; then
+                git clone https://github.com/Puneetbansal5/github-actions-demo.git
+            fi
+            cd ~/github-actions-demo
+            git pull
+            docker compose pull
+            docker compose up -d

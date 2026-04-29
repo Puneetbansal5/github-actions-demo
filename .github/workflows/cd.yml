@@ -19,7 +19,7 @@ jobs:
             if [ ! -d "~/github-actions-demo" ];then
                 git clone https://github.com/Puneetbansal5/github-actions-demo.git ~/github-actions-demo
             else    
-                echo "Repo exists, pulling latest changes...
+                echo "Repo exists, pulling latest changes..."
                 cd ~/github-actions-demo
             git pull
             fi

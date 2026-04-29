@@ -1,0 +1,20 @@
+name: cd workflow
+on:
+  workflow_run:
+      workflows: ["ci workflow"] # Cd should run after CI only not before that
+      types: [completed]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # doing git clone as after logging to ssh , we need docker compose file to server i.e ec2 instance
+      - uses: appleboy/ssh-action@v1  # using ssh log in authentication keys for linux ec2 instance
+        with:                          #  for deploying application on linux ec2 instance
+          host: ${{ secrets.HOST }}  # public ip of ec2 instance in host
+          username: ${{ secrets.USERNAME }} # ubuntu user name as username to be added in secrets
+          password: ${{ secrets.PASSWORD }} # adding private  key  or pem to password
+          script:
+           cd ~/github-actions-demo
+           docker compose pull
+           socker compose up -d

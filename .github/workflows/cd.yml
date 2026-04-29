@@ -16,5 +16,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }} # adding private  key  or pem to password
           script: |
            cd ~/github-actions-demo
+           git clone https://github.com/Puneetbansal5/github-actions-demo.git
            docker compose pull
            docker compose up -d

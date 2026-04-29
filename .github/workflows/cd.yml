@@ -13,8 +13,8 @@ jobs:
         with:                          #  for deploying application on linux ec2 instance
           host: ${{ secrets.HOST }}  # public ip of ec2 instance in host
           username: ${{ secrets.USERNAME }} # ubuntu user name as username to be added in secrets
-          password: ${{ secrets.PASSWORD }} # adding private  key  or pem to password
+          password: ${{ secrets.SSH_KEY }} # adding private  key  or pem to password
           script:
            cd ~/github-actions-demo
            docker compose pull
-           socker compose up -d
+           docker compose up -d

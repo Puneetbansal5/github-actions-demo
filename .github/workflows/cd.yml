@@ -16,8 +16,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }} # adding private  key  or pem to password
           script: |
             set -e
-            if[ ! -d "~/github-actions-demo" ]; then
-                git clone https://github.com/Puneetbansal5/github-actions-demo.git
+            if [ ! -d "~/github-actions-demo" ];then
+                git clone https://github.com/Puneetbansal5/github-actions-demo.git ~/github-actions-demo
             fi
             cd ~/github-actions-demo
             git pull
